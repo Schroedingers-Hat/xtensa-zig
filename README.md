@@ -11,6 +11,12 @@ Note that LLD is not currently supported on xtensa, so you cannot use `build-exe
     * Clang 9.0.1
     * Zig 0.5.0
 
+
+## Download
+
+Building LLVM takes much time and RAM. So there is a compiled version that may work for you on linux here:
+https://github.com/Schroedingers-Hat/xtensa-zig/releases/download/0.5.0/zig.tgz
+
 ## Build instructions
 
 ```
