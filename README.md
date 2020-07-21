@@ -34,10 +34,15 @@ git clone https://github.com/espressif/esp-idf.git
 Building an actual app or ELF is a work-in-progress, but with just this you can link and run zig code.
 
 ```
-. /path/to/esp-idf/export.sh
+# Source file, just adds the newly created zig to your path and then runs esp-idf/export.sh
+# No promises that it will work on anything other than bash.
+. /export.sh
 cd examples
 cd all_your_microcontrollers/main
-../../../out/bin/zig build-lib fib.zig -target xtensa-freestanding-none --release-small
+
+# Some combination of esp-idf and the llvm fork has trouble with clf. So debug builds may have problems.
+xtensa-zig build-lib fib.zig -target xtensa-freestanding-none --release-small
 cd ..
+
 idf.py flash monitor
 ```

@@ -6,3 +6,6 @@
 	path = zig
 	url = https://github.com/Schroedingers-Hat/zig.git
 	branch = xtensa_0.5
+[submodule "esp-idf"]
+	path = esp-idf
+	url = https://github.com/espressif/esp-idf.git

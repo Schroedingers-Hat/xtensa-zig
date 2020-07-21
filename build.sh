@@ -10,7 +10,7 @@ fi
 
 JOBS="$1"
 TARGET="x86_64-linux-musl" # Example: riscv64-linux-gnu
-MCPU="native" # Examples: `baseline`, `native`, `generic+v7a`, or `arm1176jzf_s`
+MCPU="baseline" # Examples: `baseline`, `native`, `generic+v7a`, or `arm1176jzf_s`
 
 ROOTDIR="$(pwd)"
 
@@ -24,8 +24,8 @@ cd "$ROOTDIR/out/build-llvm"
 cmake "$ROOTDIR/llvm-project/llvm" \
   -DLLVM_ENABLE_PROJECTS="lld;clang" \
   -DLLVM_ENABLE_LIBXML2=OFF \
-  -DCMAKE_INSTALL_PREFIX="$ROOTDIR/out" \
-  -DCMAKE_PREFIX_PATH="$ROOTDIR/out" \
+  -DCMAKE_INSTALL_PREFIX="$ROOTDIR/out/llvm-install" \
+  -DCMAKE_PREFIX_PATH="$ROOTDIR/out/llvm-install" \
   -DLLVM_INCLUDE_TESTS=OFF \
   -DLLVM_INCLUDE_GO_TESTS=OFF \
   -DLLVM_INCLUDE_EXAMPLES=OFF \
@@ -42,6 +42,9 @@ make "$JOBS" install
 # Clang, LLD we just built from source.
 mkdir -p "$ROOTDIR/out/build-zig"
 cd "$ROOTDIR/out/build-zig"
-cmake "$ROOTDIR/zig" -DCMAKE_INSTALL_PREFIX="$ROOTDIR/out" -DCMAKE_PREFIX_PATH="$ROOTDIR/out" -DCMAKE_BUILD_TYPE=Release
+cmake "$ROOTDIR/zig" -DCMAKE_INSTALL_PREFIX="$ROOTDIR/out/zig-install" -DCMAKE_PREFIX_PATH="$ROOTDIR/out/llvm-install" -DCMAKE_BUILD_TYPE=Release
+
 make "$JOBS" install
+mkdir -p "$ROOTDIR/out/bin"
+ln -s "${ROOTDIR}/out/zig-install/bin/zig" "${ROOTDIR}/out/bin/xtensa-zig"
 
