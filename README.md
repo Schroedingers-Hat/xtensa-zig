@@ -37,7 +37,7 @@ Building an actual app or ELF is a work-in-progress, but with just this you can 
 . /path/to/esp-idf/export.sh
 cd examples
 cd all_your_microcontrollers/main
-../../../out/host/bin/zig build-lib fib.zig -target xtensa-freestanding-none --release-small
+../../../out/bin/zig build-lib fib.zig -target xtensa-freestanding-none --release-small
 cd ..
 idf.py flash monitor
 ```
