@@ -1,7 +1,8 @@
 [submodule "llvm"]
 	path = llvm-project
 	url = https://github.com/espressif/llvm-project.git
+
 [submodule "zig"]
 	path = zig
 	url = https://github.com/Schroedingers-Hat/zig.git
-    branch = xtensa_0.5
+	branch = xtensa_0.5
